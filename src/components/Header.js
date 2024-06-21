@@ -1,16 +1,28 @@
-import React from 'react';
 
-function Header() {
+import Logo from '../images/Vector.sv'
+import ImageAvatar from '../images/Avatar.png'
+import EditButoon from '../images/Edit_Button.svg'
+import AddButton from '../images/vector_add.svg'
+
+
+export default function Header({
+  handleEditProfileClick, 
+  handleAddPlaceClick, 
+  handleEditAvatarClick,
+}) {
   return (
     <header classNameName="header">
     <div className="place-logo">
-      <img src="<%= require('./images/Vector.svg')%>" alt="logo Around" className="logo" />
-      <img src="<%= require('./images/Line.svg')%>" alt="line logo" className="line" />
+      <img src={Logo}
+      alt="logo Around" 
+      className="logo" 
+      />
+      
     </div>
     <section className="profile">
       <button className="profile__avatar-button-edit">
       <img
-        src="<%= require('./images/Avatar.png')%>"
+        src= {ImageAvatar}
         alt="Jacques Cousteau, explorador y Biologo marino."
         className="avatar"
       /></button>
@@ -18,7 +30,9 @@ function Header() {
         <div className="profile__name-area">
           <h1 className="profile__name">Jacques Cousteau</h1>
           <button className="profile__button">
-            <img src="<%= require('./images/Edit_Button.svg')%>" alt="Boton editar perfil" />
+            <img src= {EditButoon} 
+            alt="Boton editar perfil" />
+            onClick={handleEditProfileClick}
           </button>
         </div>
 
@@ -28,14 +42,13 @@ function Header() {
         <button className="add-button">
           <img
             className="add-button__image"
-            src="<%= require('./images/vector_add.svg')%>"
+            src={AddButton}
             alt="Boton agregar imagen"
           />
+          onClick={handleAddPlaceClick}
         </button>
       </div>
     </section>
   </header>
   );
 }
-
-export default Header;
