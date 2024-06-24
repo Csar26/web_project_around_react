@@ -16,8 +16,8 @@ export default function Main ({
       cards.map((item, index) => {
         return <Card 
         key={index}
-        title = {item.title}
-        link={item.title}
+        title = {item.name}
+        link={item.link}
         _id= {item._id}
         likes={item.likes}
         owner={item.owner}
