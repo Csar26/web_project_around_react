@@ -16,7 +16,7 @@ export default function Header({
         <img src={Logo} alt="logo Around" className="logo" />
       </div>
       <section className="profile">
-        <button className="profile__avatar-button-edit">
+        <button className="profile__avatar-button-edit" onClick={handleEditAvatarClick}>
           <img
             src={ImageAvatar}
             alt="Jacques Cousteau, explorador y Biologo marino."

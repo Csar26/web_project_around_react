@@ -36,7 +36,7 @@ export default function Card ({
 
   return (
     <div className="element">
-      <img src={link} alt={title} className="element__image" />
+      <img src={link} alt={title} className="element__image" onClick={handleCardClick} />
       {userIsOwner() && (
         <button className="button-delete">
           <img src={ButtonTrash} alt="boton de basura"/>
