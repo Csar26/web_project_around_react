@@ -5,6 +5,7 @@ import PopupWithForm from './PopupWithForm';
 import Card from './Card';
 import React from 'react';
 import { api } from './Api';
+import PopupWithImage from './PopWithImage';
 
 function App() {
 
@@ -12,13 +13,19 @@ function App() {
   const [openAddCardOpen, setOpenAddCardOpen] = React.useState(false);
   const [openAvatarOpen, setOpenAvatarOpen] = React.useState(false);
   const [openImageOpen, setOpenImageOpen] = React.useState(false);
-
+  const [openConfirmationOpen, setOpenConfirmationOpen] = React.useState(false);
 
   const [currenUser, setCurrentUser] = React.useState(false);
   const [cards, setCards] = React.useState([]);
 
+  const [selectCard, setSelectCard] = React.useState('');
 
-  const closeAllPopups = () => (setOpenProfileOpen, setOpenAddCardOpen, setOpenAvatarOpen, setOpenImageOpen)(false);
+  const closeAllPopups = () => {
+    setOpenProfileOpen (false); 
+    setOpenAddCardOpen (false);
+    setOpenAvatarOpen (false); 
+    setOpenImageOpen(false);
+    setOpenConfirmationOpen(false);}
   
 
 
@@ -31,10 +38,30 @@ function App() {
   });
    },[]);
 
-   const handleCardClick = () => {}
-   const handleLike = () => {}
-   const handleDeleteCard = () => {}
-   const handleRemoveLike = () => {}
+   const handleCardClick = (name, link) => {
+    setOpenImageOpen(true);
+   };
+   const handleLike = (cardId) => {
+    api.likeCard(cardId).then(()=> {
+      api.getCards().then(cards => {
+        setCards(cards);
+      })
+    })
+   };
+   const handleDeleteCard = (cardId) => {
+    selectCard(cardId);
+    setOpenConfirmationOpen(true);
+   };
+
+   const handleRemoveLike = (cardId) => {
+    api.deleteLikeCard(cardId).then(()=> {
+      api.getCards().then(cards => {
+        setCards(cards);
+      })
+    })
+  };
+
+  
 
    /*
    function remoteDeleteCard(idCard) {
@@ -170,6 +197,37 @@ function addLikeCard(idCard) {
 
 
       </PopupWithForm>
+
+      <PopupWithForm
+      open={openConfirmationOpen}
+      onClose={closeAllPopups}
+      title={"Are you sure?"}>
+
+        <>
+        <form className="popup__form popup__form_confirmation"> 
+            <label for="input-name" className="popup__label">¿Are you sure?</label>           
+            <fieldset className="popup__set">
+              <button type="button" className="form form_submit" onClick={handleDeleteCard}>Yes</button>
+            </fieldset>
+          </form>
+        </>
+      </PopupWithForm>
+
+      <PopupWithImage 
+       open={openImageOpen}
+       onClose={closeAllPopups}
+       title={'Image'}
+       /*cardLink={}
+       cardTitle={}*/
+      >
+        <img
+            class="popup__image"
+            alt="Area para colocar imagenes de popup"
+           // src={}
+          />
+          <h3 class="popup__title"></h3>
+
+      </PopupWithImage>
 
 
     </div>

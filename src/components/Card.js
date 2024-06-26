@@ -34,9 +34,13 @@ export default function Card ({
     }
   }; 
 
+  const onHandleCardClick = () => {
+    handleCardClick(title, link);
+  };
+
   return (
     <div className="element">
-      <img src={link} alt={title} className="element__image" onClick={handleCardClick} />
+      <img src={link} alt={title} className="element__image" onClick={onHandleCardClick} />
       {userIsOwner() && (
         <button className="button-delete">
           <img src={ButtonTrash} alt="boton de basura"/>
