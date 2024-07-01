@@ -38,11 +38,15 @@ export default function Card ({
     handleCardClick(title, link);
   };
 
+  const onDelete = () => {
+    handleDeleteCard(_id);
+  }
+
   return (
     <div className="element">
       <img src={link} alt={title} className="element__image" onClick={onHandleCardClick} />
       {userIsOwner() && (
-        <button className="button-delete">
+        <button className="button-delete"onClick={onDelete}>
           <img src={ButtonTrash} alt="boton de basura"/>
         </button>
       )}
