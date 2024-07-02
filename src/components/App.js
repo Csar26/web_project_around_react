@@ -1,14 +1,13 @@
-import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
-import PopupWithForm from './PopupWithForm';
-import Card from './Card';
-import React from 'react';
-import { api } from './Api';
-import PopupWithImage from './PopWithImage';
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
+import PopupWithForm from "./PopupWithForm";
+import Card from "./Card";
+import React from "react";
+import { api } from "./Api";
+import PopupWithImage from "./PopWithImage";
 
 function App() {
-
   const [openProfileOpen, setOpenProfileOpen] = React.useState(false);
   const [openAddCardOpen, setOpenAddCardOpen] = React.useState(false);
   const [openAvatarOpen, setOpenAvatarOpen] = React.useState(false);
@@ -18,64 +17,58 @@ function App() {
   const [currenUser, setCurrentUser] = React.useState(false);
   const [cards, setCards] = React.useState([]);
 
-  const [selectCard, setSelectCard] = React.useState('');
+  const [selectCard, setSelectCard] = React.useState({});
 
   const closeAllPopups = () => {
-    setOpenProfileOpen (false); 
-    setOpenAddCardOpen (false);
-    setOpenAvatarOpen (false); 
+    setOpenProfileOpen(false);
+    setOpenAddCardOpen(false);
+    setOpenAvatarOpen(false);
     setOpenImageOpen(false);
-    setOpenConfirmationOpen(false);}
-  
-
+    setOpenConfirmationOpen(false);
+  };
 
   React.useEffect(() => {
     api.getUserInfo().then((user) => {
       setCurrentUser(user);
       api.getCards().then((cards) => {
         setCards(cards);
-    });
-  });
-   },[]);
-
-   const handleCardClick = (name, link) => {
-    setOpenImageOpen(true);
-   };
-   const handleLike = (cardId) => {
-    api.likeCard(cardId).then(()=> {
-      api.getCards().then(cards => {
-        setCards(cards);
-      })
-    })
-   };
-   const handleDeleteCard = (cardId) => {
-    selectCard(cardId);
-    setOpenConfirmationOpen(true);
-   };
-
-   const handleRemoveLike = (cardId) => {
-    api.deleteLikeCard(cardId).then(()=> {
-      api.getCards().then(cards => {
-        setCards(cards);
-      })
-    })
-  };
-
-  
-
-   /*
-   function remoteDeleteCard(idCard) {
-  popupWithConfirmation.open(() => {
-    return api.deleteCard(idCard).then(() => {
-      api.getCards().then((cards) => {
-        section.setItems(cards);
-        section.renderItems();
       });
     });
-  });
-}
-    
+  }, []);
 
+  const handleCardClick = (card) => {
+    setOpenImageOpen(true);
+    setSelectCard(card);
+  };
+  const handleLike = (cardId) => {
+    api.likeCard(cardId).then(() => {
+      api.getCards().then((cards) => {
+        setCards(cards);
+      });
+    });
+  };
+  const handleDeleteCard = (card) => {
+    setSelectCard(card);
+    setOpenConfirmationOpen(true);
+  };
+
+  const handleRemoveLike = (cardId) => {
+    api.deleteLikeCard(cardId).then(() => {
+      api.getCards().then((cards) => {
+        setCards(cards);
+      });
+    });
+  };
+
+  function remoteDeleteCard() {
+    return api.deleteCard(selectCard._id).then(() => {
+      api.getCards().then((cards) => {
+        setCards(cards);        
+      });
+    });
+  }
+
+  /*
 const handleRemoveLike(idCard) {
   return api.deleteLike(idCard);
 }
@@ -84,34 +77,29 @@ function addLikeCard(idCard) {
   return api.likeCard(idCard);
 }*/
 
-
-
-
   return (
-      <div className="page">
-        <Header
+    <div className="page">
+      <Header
         handleEditProfileClick={() => {
           setOpenProfileOpen(true);
         }}
         handleAddPlaceClick={() => {
           setOpenAddCardOpen(true);
         }}
-       handleEditAvatarClick={()=> {
-        setOpenAvatarOpen(true);
-       }}
-        />
-        <Main
+        handleEditAvatarClick={() => {
+          setOpenAvatarOpen(true);
+        }}
+      />
+      <Main
         currenttUser={currenUser}
         cards={cards}
         handleLike={handleLike}
         handleRemoveLike={handleRemoveLike}
         handleDeleteCard={handleDeleteCard}
-        handleCardClick={()=> {
-          setOpenImageOpen(true);
-         }}
-        />
-        <Footer/>   
-        <PopupWithForm
+        handleCardClick={handleCardClick}
+      />
+      <Footer />
+      <PopupWithForm
         open={openProfileOpen}
         onClose={closeAllPopups}
         title={"Edit profile"}
@@ -146,7 +134,6 @@ function addLikeCard(idCard) {
           />
           <span className="form form_error form_error_index-job"></span>
         </>
-
       </PopupWithForm>
 
       <PopupWithForm
@@ -155,81 +142,71 @@ function addLikeCard(idCard) {
         title={"New Place"}
       >
         <>
-        <input
-                type="text"
-                required
-                minLength="2"
-                maxLength="30"
-                className="form form_input"
-                name="title"
-                placeholder="Title"
-              />
-              <span className="form form_error form_error_index-title"></span>
-              <label for="input-name" className="popup__label"> </label>
-              <input
-                type="url"
-                required
-                className="form form_input"
-                name="link"
-                placeholder="link"
-              />
-              <span className="form form_error form_error_index-link"></span>
-          
+          <input
+            type="text"
+            required
+            minLength="2"
+            maxLength="30"
+            className="form form_input"
+            name="title"
+            placeholder="Title"
+          />
+          <span className="form form_error form_error_index-title"></span>
+          <label for="input-name" className="popup__label">
+            {" "}
+          </label>
+          <input
+            type="url"
+            required
+            className="form form_input"
+            name="link"
+            placeholder="link"
+          />
+          <span className="form form_error form_error_index-link"></span>
         </>
-
-      </PopupWithForm>
-
-      <PopupWithForm 
-      open={openAvatarOpen}
-      onClose={closeAllPopups}
-      title={"Edit profile photo"}>
-        <>
-              <input
-              type="url"
-              required
-              className="form form_input"
-              name="link"
-              placeholder="link"
-              />
-              <span className="form form_error form_error_index-name"></span>
-         
-        </>
-
-
       </PopupWithForm>
 
       <PopupWithForm
-      open={openConfirmationOpen}
-      onClose={closeAllPopups}
-      title={"Are you sure?"}>
-
+        open={openAvatarOpen}
+        onClose={closeAllPopups}
+        title={"Edit profile photo"}
+        
+      >
         <>
-        <form className="popup__form popup__form_confirmation"> 
-            <label for="input-name" className="popup__label">¿Are you sure?</label>           
-            <fieldset className="popup__set">
-              <button type="button" className="form form_submit" onClick={handleDeleteCard}>Yes</button>
-            </fieldset>
-          </form>
+          <input
+            type="url"
+            required
+            className="form form_input"
+            name="link"
+            placeholder="link"
+          />
+          <span className="form form_error form_error_index-name"></span>
         </>
       </PopupWithForm>
 
-      <PopupWithImage 
-       open={openImageOpen}
-       onClose={closeAllPopups}
-       title={'Image'}
-       /*cardLink={}
-       cardTitle={}*/
+      <PopupWithForm
+        open={openConfirmationOpen}
+        onSubmit={remoteDeleteCard}
+        onClose={closeAllPopups}
+        title={"Are you sure?"}
+        buttonText="Yes"
+      >
+        <></>
+      </PopupWithForm>
+
+      <PopupWithImage
+        open={openImageOpen}
+        onClose={closeAllPopups}
+        title={"Image"}
+        selectCard={selectCard}
       >
         <img
-            class="popup__image"
-            alt="Area para colocar imagenes de popup"
-           // src={}
-          />
-          <h3 class="popup__title"></h3>
-
+          class="popup__image"
+          alt="Area para colocar imagenes de popup"
+          // src={}
+        />
+        <h3 class="popup__title"></h3>
       </PopupWithImage>
-
-
     </div>
   );
 }

@@ -34,12 +34,12 @@ export default function Card ({
     }
   }; 
 
-  const onHandleCardClick = () => {
-    handleCardClick(title, link);
+  const onHandleCardClick = () => {    
+    handleCardClick({title, link, _id});
   };
 
   const onDelete = () => {
-    handleDeleteCard(_id);
+    handleDeleteCard({_id});
   }
 
   return (
