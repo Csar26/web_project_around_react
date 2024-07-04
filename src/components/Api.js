@@ -80,7 +80,7 @@ class Api {
     }).then((response) => response.json());
   }
 
-changeavatar(avatar){
+changeAvatar(avatar){
   return fetch(this._url + "/users/me/avatar", {
     headers: {
       Authorization: this._token,

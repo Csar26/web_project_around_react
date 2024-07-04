@@ -1,7 +1,5 @@
 import ButtonTrash from '../images/Trash.svg'
 import React from "react";
-
-
 export default function Card ({
   title,
   link,
@@ -15,17 +13,14 @@ export default function Card ({
   createdAt,
   user,
 }) {
-
   const hasOwnerLike = () => {
     return likes.some((item) => {
       return item._id === user._id;
     });
   };
-
   const userIsOwner = () => {
     return owner._id === user._id;
   };
-
   const onhandleLike = () => {
     if (hasOwnerLike()) {
       handleRemoveLike(_id);
@@ -34,12 +29,12 @@ export default function Card ({
     }
   }; 
 
-  const onHandleCardClick = () => {
-    handleCardClick(title, link);
+  const onHandleCardClick = () => {    
+    handleCardClick({title, link, _id});
   };
 
   const onDelete = () => {
-    handleDeleteCard(_id);
+    handleDeleteCard({_id});
   }
 
   return (
