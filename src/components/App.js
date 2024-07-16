@@ -6,6 +6,12 @@ import Card from "./Card";
 import React from "react";
 import { api } from "./Api";
 import PopupWithImage from "./PopupWithImage";
+import { CurrenttUserContext } from "../contexts/CurrentUserContext";
+import { EditAvatarPopup } from "./EditAvatarPopup";
+import { EditProfilePopup } from "./EditProfilePopup";
+import { AddPlacePopup } from "./AddPlacePopup";
+
+
 
 function App() {
   const [openProfileOpen, setOpenProfileOpen] = React.useState(false);
@@ -13,10 +19,12 @@ function App() {
   const [openAvatarOpen, setOpenAvatarOpen] = React.useState(false);
   const [openImageOpen, setOpenImageOpen] = React.useState(false);
   const [openConfirmationOpen, setOpenConfirmationOpen] = React.useState(false);
-  const [currenUser, setCurrentUser] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState(false);
   const [cards, setCards] = React.useState([]);
 
   const [selectCard, setSelectCard] = React.useState({});
+
+
 
   const closeAllPopups = () => {
     setOpenProfileOpen(false);
@@ -112,6 +120,7 @@ function addLikeCard(idCard) {
 }*/
 
   return (
+    <CurrenttUserContext.Provider value={{setCurrentUser}}>
     <div className="page">
       <Header
         handleEditProfileClick={() => {
@@ -128,7 +137,7 @@ function addLikeCard(idCard) {
         }}
       />
       <Main
-        currenttUser={currenUser}
+        currenttUser={currentUser}
         cards={cards}
         handleLike={handleLike}
         handleRemoveLike={handleRemoveLike}
@@ -136,93 +145,14 @@ function addLikeCard(idCard) {
         handleCardClick={handleCardClick}
       />
       <Footer />
-      <PopupWithForm
-        open={openProfileOpen}
-        onClose={closeAllPopups}
-        title={"Edit profile"}
-        onSubmit={onSubmitEditProfile}
-      >
-        <>
-          <input
-            placeholder="Name"
-            minLength="2"
-            maxLength="40"
-            type="text"
-            id="input-name"
-            className="form form_input"
-            name="name"
-            defaultValue="Jacques Cousteau"
-            required
-          />
-          <span className="form form_error form_error_index-name"></span>
-          <label
-            htmlFor="input-name"
-            className="popup__label popup__label_edit"
-          ></label>
-          <input
-            placeholder="About"
-            required
-            minLength="2"
-            maxLength="200"
-            type="text"
-            id="input-about"
-            className="form form_input"
-            name="job"
-            defaultValue="Explorer"
-          />
-          <span className="form form_error form_error_index-job"></span>
-        </>
-      </PopupWithForm>
+      
+      <EditProfilePopup isOpen={setOpenProfileOpen} onClose={closeAllPopups} />  
 
-      <PopupWithForm
-        open={openAddCardOpen}
-        onSubmit={onSubmitAddPlace}
-        onClose={closeAllPopups}
-        title={"New Place"}
-      >
-        <>
-          <input
-            type="text"
-            required
-            minLength="2"
-            maxLength="30"
-            className="form form_input"
-            name="title"
-            placeholder="Title"
-          />
-          <span className="form form_error form_error_index-title"></span>
-          <label for="input-name" className="popup__label">
-            {" "}
-          </label>
-          <input
-            type="url"
-            required
-            className="form form_input"
-            name="link"
-            placeholder="link"
-          />
-          <span className="form form_error form_error_index-link"></span>
-        </>
-      </PopupWithForm>
+      <AddPlacePopup isOpen={setOpenAddCardOpen} onClose={closeAllPopups} />    
 
-      <PopupWithForm
-        open={openAvatarOpen}
-        onClose={closeAllPopups}
-        title={"Edit profile photo"}
-        onSubmit={onSubmitAvatar}
+     
 
-      >
-        <>
-          <input
-            type="url"
-            required
-            className="form form_input"
-            name="link"
-            placeholder="link"
-          />
-          <span className="form form_error form_error_index-name"></span>
-        </>
-      </PopupWithForm>
+      <EditAvatarPopup isOpen={setOpenAvatarOpen} onClose={closeAllPopups} />
 
       <PopupWithForm
         open={openConfirmationOpen}
@@ -243,6 +173,7 @@ function addLikeCard(idCard) {
         <></>
       </PopupWithImage>
     </div>
+    </CurrenttUserContext.Provider>
   );
 }
 export default App;

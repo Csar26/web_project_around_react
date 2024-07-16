@@ -3,6 +3,7 @@ import Logo from '../images/Vector.svg'
 import ImageAvatar from '../images/Avatar.png'
 import EditButoon from '../images/Edit_Button.svg'
 import AddButton from '../images/vector_add.svg'
+import { CurrenttUserContext } from '../contexts/CurrentUserContext'
 
 
 export default function Header({
