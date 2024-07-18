@@ -6,10 +6,10 @@ import Card from "./Card";
 import React from "react";
 import { api } from "./Api";
 import PopupWithImage from "./PopupWithImage";
-import { CurrenttUserContext } from "../contexts/CurrentUserContext";
-import { EditAvatarPopup } from "./EditAvatarPopup";
-import { EditProfilePopup } from "./EditProfilePopup";
-import { AddPlacePopup } from "./AddPlacePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
+import EditProfilePopup from "./EditProfilePopup";
+import AddPlacePopup  from "./AddPlacePopup";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 
 
@@ -120,7 +120,7 @@ function addLikeCard(idCard) {
 }*/
 
   return (
-    <CurrenttUserContext.Provider value={{setCurrentUser}}>
+    <CurrentUserContext.Provider value={{setCurrentUser}}>
     <div className="page">
       <Header
         handleEditProfileClick={() => {
@@ -173,7 +173,7 @@ function addLikeCard(idCard) {
         <></>
       </PopupWithImage>
     </div>
-    </CurrenttUserContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 export default App;

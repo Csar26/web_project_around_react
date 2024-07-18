@@ -1,6 +1,7 @@
+import PopupWithForm from "./PopupWithForm";
 import React from "react";
 
-export default function AddPlacePopup({open, onClose}) {
+export default function AddPlacePopup({openAddCardOpen, closeAllPopups, onSubmitAddPlace}) {
 
 
   return (
