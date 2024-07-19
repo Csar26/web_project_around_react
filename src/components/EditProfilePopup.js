@@ -1,31 +1,28 @@
 import PopupWithForm from "./PopupWithForm";
 import React from "react";
-import { CurrenttUserContext } from "../contexts/CurrentUserContext";
+import  CurrentUserContext  from "../contexts/CurrentUserContext";
 
-export default function EditProfilePopup ({openProfileOpen, closeAllPopups, onUpdateUser }) {
+export default function EditProfilePopup ({isOpen, onClose, onUpdateUser }) {
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
 
-  const currenttUser = React.useContext(CurrenttUserContext);
+  const currenttUser = React.useContext(CurrentUserContext);
   React.useEffect(() => {
     setName(currenttUser.name);
     setDescription(currenttUser.about);
   }, [currenttUser]);
-
   function onSubmitEditProfile(e){
     e.preventDefault();
-
     onUpdateUser({
       name,
       about: description,
     });
   }
-
   return (
-    
+
 <PopupWithForm
-open={openProfileOpen}
-onClose={closeAllPopups}
+open={isOpen}
+onClose={onClose}
 title={"Edit profile"}
 onSubmit={onSubmitEditProfile}
 >
@@ -39,8 +36,7 @@ onSubmit={onSubmitEditProfile}
     className="form form_input"
     onChange={(e)=> setName(e.target.value)}
     name="name"
-    value={name}
-    defaultValue="Jacques Cousteau"
+    defaultValue={currenttUser.name}
     required
   />
   <span className="form form_error form_error_index-name"></span>
@@ -58,12 +54,10 @@ onSubmit={onSubmitEditProfile}
     className="form form_input"
     onChange={(e)=> setDescription(e.target.value)}
     name="job"
-    defaultValue="Explorer"
+    defaultValue={currenttUser.about}
   />
   <span className="form form_error form_error_index-job"></span>
 </>
 </PopupWithForm>
-
   )
 }
-

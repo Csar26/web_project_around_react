@@ -1,15 +1,14 @@
 import Card from "./Card";
-import { CurrenttUserContext } from "../contexts/CurrentUserContext";
+import  CurrentUserContext  from "../contexts/CurrentUserContext";
+import React from "react";
 
 export default function Main ({
-  cards, 
-  currenttUser,
+  cards,   
   handleCardClick,
   handleLike,
   handleRemoveLike,
   handleDeleteCard,
 }) {
-
   return (
     <main className="content">
     <section className="elements">
@@ -22,8 +21,7 @@ export default function Main ({
         _id= {item._id}
         likes={item.likes}
         owner={item.owner}
-        createdAt={item.createdAt}
-        user={currenttUser}
+        createdAt={item.createdAt}        
         handleCardClick={handleCardClick}
         handleLike={handleLike}
         handleRemoveLike={handleRemoveLike}
@@ -34,5 +32,4 @@ export default function Main ({
     </section>
   </main>
   )
-
 }

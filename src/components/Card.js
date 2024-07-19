@@ -1,6 +1,6 @@
 import ButtonTrash from '../images/Trash.svg'
 import React from "react";
-import { CurrenttUserContext } from '../contexts/CurrentUserContext';
+import  CurrentUserContext  from '../contexts/CurrentUserContext';
 
 
 
@@ -14,9 +14,11 @@ export default function Card ({
   _id, 
   likes, 
   owner, 
-  createdAt,
-  user,
+  createdAt,  
 }) {
+
+  const user = React.useContext(CurrentUserContext);
+
   const hasOwnerLike = () => {
     return likes.some((item) => {
       return item._id === user._id;
@@ -32,15 +34,12 @@ export default function Card ({
       handleLike(_id);
     }
   }; 
-
   const onHandleCardClick = () => {    
     handleCardClick({title, link, _id});
   };
-
   const onDelete = () => {
     handleDeleteCard({_id});
   }
-
   return (
     <div className="element">
       <img src={link} alt={title} className="element__image" onClick={onHandleCardClick} />
