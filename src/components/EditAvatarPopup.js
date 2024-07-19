@@ -1,8 +1,8 @@
 import PopupWithForm from "./PopupWithForm";
 import React from "react";
-import { CurrenttUserContext } from "../contexts/CurrentUserContext";
+import  CurrentUserContext  from "../contexts/CurrentUserContext";
 
-export default function EditAvatarPopup({openAvatarOpen, closeAllPopups, onUpdateAvatar}) {
+export default function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
   const avatarRef = React.useRef();
 
   function onSubmitAvatar(e) {
@@ -17,8 +17,8 @@ export default function EditAvatarPopup({openAvatarOpen, closeAllPopups, onUpdat
   return (
 
 <PopupWithForm
-        open={openAvatarOpen}
-        onClose={closeAllPopups}
+        open={isOpen}
+        onClose={onClose}
         title={"Edit profile photo"}
         onSubmit={onSubmitAvatar}
 

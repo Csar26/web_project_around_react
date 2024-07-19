@@ -1,15 +1,15 @@
 import PopupWithForm from "./PopupWithForm";
 import React from "react";
 
-export default function AddPlacePopup({openAddCardOpen, closeAllPopups, onSubmitAddPlace}) {
+export default function AddPlacePopup({isOpen, onClose, onSubmitAddPlace}) {
 
 
   return (
 
     <PopupWithForm
-        open={openAddCardOpen}
+        open={isOpen}
         onSubmit={onSubmitAddPlace}
-        onClose={closeAllPopups}
+        onClose={onClose}
         title={"New Place"}
       >
         <>
@@ -23,7 +23,7 @@ export default function AddPlacePopup({openAddCardOpen, closeAllPopups, onSubmit
             placeholder="Title"
           />
           <span className="form form_error form_error_index-title"></span>
-          <label for="input-name" className="popup__label">
+          <label htmlFor="input-name" className="popup__label">
             {" "}
           </label>
           <input

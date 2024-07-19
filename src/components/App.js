@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import Card from "./Card";
 import React from "react";
-import { api } from "./Api";
+import { api } from "../utils/api";
 import PopupWithImage from "./PopupWithImage";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
@@ -120,7 +120,7 @@ function addLikeCard(idCard) {
 }*/
 
   return (
-    <CurrentUserContext.Provider value={{setCurrentUser}}>
+    <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
       <Header
         handleEditProfileClick={() => {
@@ -136,8 +136,7 @@ function addLikeCard(idCard) {
           handleCloseEscape();
         }}
       />
-      <Main
-        currenttUser={currentUser}
+      <Main        
         cards={cards}
         handleLike={handleLike}
         handleRemoveLike={handleRemoveLike}
@@ -146,13 +145,13 @@ function addLikeCard(idCard) {
       />
       <Footer />
       
-      <EditProfilePopup isOpen={setOpenProfileOpen} onClose={closeAllPopups} />  
+      <EditProfilePopup isOpen={openProfileOpen} onClose={closeAllPopups} />  
 
-      <AddPlacePopup isOpen={setOpenAddCardOpen} onClose={closeAllPopups} />    
+      <AddPlacePopup isOpen={openAddCardOpen} onClose={closeAllPopups} />    
 
      
 
-      <EditAvatarPopup isOpen={setOpenAvatarOpen} onClose={closeAllPopups} />
+      <EditAvatarPopup isOpen={openAvatarOpen} onClose={closeAllPopups} />
 
       <PopupWithForm
         open={openConfirmationOpen}
