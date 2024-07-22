@@ -125,13 +125,13 @@ function addLikeCard(idCard) {
       />
       <Footer />
 
-      <EditProfilePopup isOpen={openProfileOpen} onClose={closeAllPopups} />  
+      <EditProfilePopup isOpen={openProfileOpen} onClose={closeAllPopups} onSubmit={onSubmitEditProfile}/>  
 
-      <AddPlacePopup isOpen={openAddCardOpen} onClose={closeAllPopups} />    
+      <AddPlacePopup isOpen={openAddCardOpen} onClose={closeAllPopups} onSubmit={onSubmitAddPlace} />    
 
 
 
-      <EditAvatarPopup isOpen={openAvatarOpen} onClose={closeAllPopups} />
+      <EditAvatarPopup isOpen={openAvatarOpen} onClose={closeAllPopups} onSubmit={onSubmitAvatar} />
 
       <PopupWithForm
         open={openConfirmationOpen}
