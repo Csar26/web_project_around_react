@@ -71,9 +71,9 @@ function App() {
       setOpenProfileOpen(false);
     })
   }
-  const onSubmitAddPlace = (name, link) => {
-    return api.addCard({name, link}).then((card) => {
-    setCards({card,...cards});
+  const onSubmitAddPlace = (data) => {
+    return api.addCard(data.link, data.title).then((card) => {
+    setCards([card,...cards]);
     setOpenAddCardOpen(false);
     });
   };
@@ -125,13 +125,13 @@ function addLikeCard(idCard) {
       />
       <Footer />
 
-      <EditProfilePopup isOpen={openProfileOpen} onClose={closeAllPopups} onSubmit={onSubmitEditProfile}/>  
+      <EditProfilePopup isOpen={openProfileOpen} onClose={closeAllPopups} onSubmitEditProfile={onSubmitEditProfile}/>  
 
-      <AddPlacePopup isOpen={openAddCardOpen} onClose={closeAllPopups} onSubmit={onSubmitAddPlace} />    
+      <AddPlacePopup isOpen={openAddCardOpen} onClose={closeAllPopups} onSubmitAddPlace={onSubmitAddPlace} />    
 
 
 
-      <EditAvatarPopup isOpen={openAvatarOpen} onClose={closeAllPopups} onSubmit={onSubmitAvatar} />
+      <EditAvatarPopup isOpen={openAvatarOpen} onClose={closeAllPopups} onSubmitAvatar={onSubmitAvatar} />
 
       <PopupWithForm
         open={openConfirmationOpen}
