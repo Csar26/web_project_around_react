@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import Card from "./Card";
 import React from "react";
-import { api } from "../utils/api";
+import  api  from "../utils/api";
 import PopupWithImage from "./ImagePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
