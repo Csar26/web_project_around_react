@@ -78,7 +78,7 @@ function App() {
     });
   };
   const onSubmitAvatar = (avatar) => {
-    return api.changeAvatar({avatar}).then((user) => {
+    return api.changeAvatar(avatar).then((user) => {
     setCurrentUser(user);
     setOpenAvatarOpen(false);
     });
@@ -125,13 +125,13 @@ function addLikeCard(idCard) {
       />
       <Footer />
 
-      <EditProfilePopup isOpen={openProfileOpen} onClose={closeAllPopups} onSubmitEditProfile={onSubmitEditProfile}/>  
+      <EditProfilePopup isOpen={openProfileOpen} onClose={closeAllPopups} onUpdateUser={onSubmitEditProfile}/>  
 
       <AddPlacePopup isOpen={openAddCardOpen} onClose={closeAllPopups} onSubmitAddPlace={onSubmitAddPlace} />    
 
 
 
-      <EditAvatarPopup isOpen={openAvatarOpen} onClose={closeAllPopups} onSubmitAvatar={onSubmitAvatar} />
+      <EditAvatarPopup isOpen={openAvatarOpen} onClose={closeAllPopups} onUpdateAvatar={onSubmitAvatar} />
 
       <PopupWithForm
         open={openConfirmationOpen}
