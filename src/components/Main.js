@@ -9,6 +9,9 @@ export default function Main ({
   handleRemoveLike,
   handleDeleteCard,
 }) {
+
+  const currentUser = React.useContext(CurrentUserContext)
+
   return (
     <main className="content">
     <section className="elements">
