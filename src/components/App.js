@@ -5,7 +5,7 @@ import PopupWithForm from "./PopupWithForm";
 import Card from "./Card";
 import React from "react";
 import { api } from "../utils/api";
-import PopupWithImage from "./imagePopup";
+import PopupWithImage from "./ImagePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import AddPlacePopup  from "./AddPlacePopup";
