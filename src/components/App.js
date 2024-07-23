@@ -5,7 +5,7 @@ import PopupWithForm from "./PopupWithForm";
 import Card from "./Card";
 import React from "react";
 import  api  from "../utils/api";
-import PopupWithImage from "./ImagePopup";
+import ImagePopup from "./ImagePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import AddPlacePopup  from "./AddPlacePopup";
@@ -142,14 +142,14 @@ function addLikeCard(idCard) {
       >
         <></>
       </PopupWithForm>
-      <PopupWithImage
+      <ImagePopup
         open={openImageOpen}
         onClose={closeAllPopups}
         title={"Image"}
         selectCard={selectCard}
       >
         <></>
-      </PopupWithImage>
+      </ImagePopup>
     </div>
     </CurrentUserContext.Provider>
   );

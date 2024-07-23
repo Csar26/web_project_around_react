@@ -1,7 +1,7 @@
 import React from "react";
 import Popup from "./Popup";
 
-export default function PopupWithImage ({title, onClose, selectCard, open}){
+export default function ImagePopup ({title, onClose, selectCard, open}){
 
 
   return (
