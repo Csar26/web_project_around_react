@@ -6,6 +6,7 @@ export default function ImagePopup ({title, onClose, selectCard, open}){
   
 
   return (
+    
 
     <>
     <Popup  title= {title} onClose={onClose} open={open}>

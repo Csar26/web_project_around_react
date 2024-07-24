@@ -11,6 +11,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     setName(currenttUser.name);
     setDescription(currenttUser.about);
   }, [currenttUser]);
+  
 
   function onSubmitEditProfile() {
     onUpdateUser({

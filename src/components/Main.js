@@ -9,6 +9,7 @@ export default function Main ({
   handleRemoveLike,
   handleDeleteCard,
 }) {
+  
 
   const currentUser = React.useContext(CurrentUserContext)
 

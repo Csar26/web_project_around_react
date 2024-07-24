@@ -7,6 +7,7 @@ export default function PopupWithForm ({children, open, title, onClose, onSubmit
     const inputs = getInputValues(event.target);
     onSubmit(inputs)
   }
+  
 
   const getInputValues = (form) => {
     const inputValues = {};

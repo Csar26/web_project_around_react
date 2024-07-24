@@ -25,6 +25,7 @@ function App() {
     setOpenAvatarOpen(false);
     setOpenImageOpen(false);
     setOpenConfirmationOpen(false);
+    
   };
   React.useEffect(() => {
     api.getUserInfo().then((user) => {

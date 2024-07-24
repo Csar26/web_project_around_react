@@ -2,6 +2,7 @@ import PopupWithForm from "./PopupWithForm";
 import React from "react";
 
 export default function AddPlacePopup({isOpen, onClose, onSubmitAddPlace}) {
+  
 
 
   return (

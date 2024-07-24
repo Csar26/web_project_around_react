@@ -68,6 +68,7 @@ export default class Api {
       },
       method: "PUT",
     }).then((response) => response.json());
+    
   }
 
   deleteLikeCard(idcard) {

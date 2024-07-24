@@ -11,6 +11,7 @@ export default function Header({
   handleAddPlaceClick,
   handleEditAvatarClick,
 }) {
+  
 
   const currentUser = React.useContext(CurrentUserContext)
 
