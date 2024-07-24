@@ -19,6 +19,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       about: description,
     });
   }
+  
 
   return (
     <PopupWithForm

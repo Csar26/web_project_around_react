@@ -12,6 +12,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
     avatarRef.current.value = "";
   }
   
+  
   return (
     <PopupWithForm
       open={isOpen}

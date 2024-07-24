@@ -5,7 +5,6 @@ import AddButton from '../images/vector_add.svg'
 import  CurrentUserContext  from '../contexts/CurrentUserContext'
 import React from 'react'
 
-
 export default function Header({
   handleEditProfileClick,
   handleAddPlaceClick,

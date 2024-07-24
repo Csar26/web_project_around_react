@@ -2,9 +2,6 @@ import ButtonTrash from '../images/Trash.svg'
 import React from "react";
 import  CurrentUserContext  from '../contexts/CurrentUserContext';
 
-
-
-
 export default function Card ({
   title,
   link,

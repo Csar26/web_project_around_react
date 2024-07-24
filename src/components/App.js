@@ -10,6 +10,7 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import AddPlacePopup  from "./AddPlacePopup";
 import CurrentUserContext from "../contexts/CurrentUserContext";
+
 function App() {
   const [openProfileOpen, setOpenProfileOpen] = React.useState(false);
   const [openAddCardOpen, setOpenAddCardOpen] = React.useState(false);
